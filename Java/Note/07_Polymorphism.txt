@@ -1,0 +1,2448 @@
+16-03-2025
+----------
+***Polymorphism :
+-----------------
+Poly means "many" and morphism means "forms".
+
+It is a Greek word whose meaning is "same object having different behavior".
+
+In our real life a person or a human being can perform so many task, in the same way in our programming languages a method or a constructor can perform so many task.
+
+Example:-
+
+void add(int a, int b)
+
+void add(int a, int b, int c)
+
+void add(float a, float b)
+
+void add(int a, float b)
+
+Types of Polymorphism :
+-----------------------
+Polymorphism can be divided into two types :
+
+1) Static polymorphism OR Compile time polymorphism OR Early binding
+
+2) Dynamic Polymorphism OR Runtime polymorphism OR Late binding
+
+1) Static Polymorphism :
+------------------------
+The polymorphism which exist at the time of compilation is called Static OR compile time polymorphism.
+
+In static polymorphism, compiler has very good idea that which method is invoked depending upon METHOD PARAMETER.
+
+Here the binding of the method is done at compilation time so, it is known as early binding.
+
+We can achieve static polymorphism by using Method Overloading concept.
+
+Example of static polymorphism : Method Overloading.
+
+
+2) Dynamic Polymorphism 
+-----------------------
+The polymorphism which exist at runtime is called Dynamic polymorphim Or Runtime Polymorphism.
+
+*Here compiler does not have any idea about method calling, at runtime JVM will decide which method will be invoked depending upon CLASS TYPE OBJECT.
+
+Here method binding is done at runtime so, it is also called Late Binding.
+
+We can achieve dynamic polymorphism by using Method Overriding.
+
+Example of Dynamic Polymorphism : Method Overriding
+
+----------------------------------------------------------------
+Method Overloading :
+-------------------
+Writing two or more methods in the super and sub class in such a way that method name must be same but argument must be different.
+
+Method Overloading allows us to write same method name which is differ in :
+   1) Number of parameters of same type
+   2) Data type of parameters
+   3) Order OR Sequance of Data type (int-long and long-int)
+ 
+Method Overloading is possible in the same class as well as super and sub class.
+
+While working with Method Overloading, We can change the return type of the method.
+
+If I change only the return type but method parameters are same then It is not a valid method Overloading.
+---------------------------------------------------------------
+//Programs on MethodOverloading 
+
+package com.ravi.static_polymorphism;
+
+class Add
+{
+	public void sum(int x, int y)
+	{
+		System.out.println("Sum of two integer is :"+(x+y));
+	}
+	
+	public void sum(int x, int y, int z)
+	{
+		System.out.println("Sum of three integer is :"+(x+y+z));
+	}
+	
+	public void sum(double x, double y)
+	{
+		System.out.println("Sum of two double is :"+(x+y));
+	}
+}
+
+
+public class MethodOverloadingDemo1 
+{
+	public static void main(String[] args) 
+	{
+		Add add = new Add();
+		add.sum(2.3, 4.5);
+		add.sum(12, 12);
+		add.sum(10, 20, 30);	
+		
+	}
+
+}
+
+//Program on Constructor Overloading :
+---------------------------------------
+package com.ravi.static_polymorphism;
+
+class Addition
+{
+	public Addition(int x, int y)
+	{
+		System.out.println("Sum of two integer is :"+(x+y));
+	}
+	public Addition(String x, String y)
+	{
+		this(10,20);
+		System.out.println("Concatenation of two String is  :"+(x+y));
+	}
+	public Addition(double x, double y)
+	{
+		this("Data","base");
+		System.out.println("Sum of two Double is :"+(x+y));
+	}
+	
+	
+	{
+		System.out.println("NSB");
+	}
+}
+
+public class ConstructorOverloadingDemo1 {
+
+	public static void main(String[] args) 
+	{
+		Addition a1 = new Addition(12.5, 23.8);
+	}
+}
+
+WAP to show method overloading by changing the return type :
+-------------------------------------------------------------
+package com.ravi.static_polymorphism;
+
+class Sum
+{
+	public int add(int x, int y)
+	{
+		return (x+y);
+	}
+	public double add(double x, double y)
+	{
+		return (x+y);
+	}
+	
+	public String add(String x, String y)
+	{
+		return (x+y);
+	}
+}
+
+public class MethodOverloadingDemo3 
+{
+	public static void main(String[] args) 
+	{
+		Sum s1 = new Sum();
+	    System.out.println(s1.add("Data", "base"));
+	    System.out.println(s1.add(12.90, 45.89));
+	    System.out.println(s1.add(10, 20));
+	    
+
+	}
+
+}
+--------------------------------------------------------------
+
+Var-Args in Java :
+--------------------
+It was introduced from JDK 1.5 onwards.
+
+It stands for variable argument. It is an array variable which can hold 0 to n number of parameters of same type or different type by using Object class.
+
+It is represented by exactly 3 dots (...) so it can accept any number of argument (0 to nth) that means now we need not to define method body again and again, if there is change in method parameter value.
+
+var-args must be only one and last argument.
+
+Var Args must be used as a method OR Constructor parameter only.
+
+-------------------------------------------------------------
+WAP that show var args can accept 0 to n number of parameters.
+
+package com.ravi.var_args;
+
+class Test
+{
+   public void input(int... x)
+   {
+	   System.out.println("Var Args Executed");
+   }
+}
+public class VarArgsDemo1
+{  
+   public static void main(String ...args)
+   {
+	   Test t1 = new Test();
+       t1.input();  
+       t1.input(5);  
+       t1.input(10,20);  
+       t1.input(10,20,30);
+   }
+}
+--------------------------------------------------------------
+WAP to show var args is an array variable
+
+package com.ravi.var_args;
+
+class Accept
+{
+	public void sumOfParameter(int ...values)
+	{
+		int sum = 0;
+		
+		for(int value : values)
+		{
+			sum = sum + value;
+		}
+		System.out.println("Sum of Parametes :"+sum);
+		
+	}
+}
+
+public class VarArgsDemo2 
+{
+	public static void main(String[] args) 
+	{
+		Accept a = new Accept();
+		a.sumOfParameter(100,200,300,400,500);
+		a.sumOfParameter(10,20,30);
+		a.sumOfParameter();
+
+	}
+
+}
+--------------------------------------------------------------
+WAP to show var args can accept hetrogeneous types of element
+
+package com.ravi.var_args;
+
+class Hetro
+{
+	public void acceptHetro(Object ...obj)
+	{
+		for(Object x : obj)
+		{
+			System.out.println(x);
+		}
+	}
+}
+public class VarArgsDemo3 
+{
+	public static void main(String[] args) 
+	{
+		Hetro h = new Hetro();
+		h.acceptHetro(12,23.90,'A',"NIT", false, new String("NIT"));
+
+	}
+
+}
+--------------------------------------------------------------
+WAP to show var args must be only one and last argument.
+
+package com.ravi.var_args;
+
+class Demo
+{
+	/*
+	 * All commented statements are invalid
+	 * 
+	public void accept(int ...x, int ...y) 
+    {
+	}	
+	
+	public void accept(int ...x, int y) //Invalid
+	{
+	}   
+	
+	public void accept(int ...x, double ...y) //Invalid
+	{
+	}
+	 */
+	
+	public void accept(int x, int ...y)
+	{
+		System.out.println("x value is :"+x);
+		
+		for(int a : y)
+		{
+			System.out.println(a);
+		}		
+	}
+}
+public class VarArgsDemo4 
+{
+	public static void main(String[] args) 
+	{
+		Demo d1 = new Demo();
+		d1.accept(100, 10,20,30,40,50);
+
+	}
+
+}
+==============================================================
+17-03-2025
+-----------
+Wrapper classes in java :
+-------------------------
+We have 8 primitive data types in java i.e byte, short, int, long, float, double, boolean, and char.
+
+Except these 8 primitive data types, everything in java is an object.
+
+If we remove these 8 primitive data types then only java can become pure object oriented language.
+
+On these primitive data types, we can't assign null or we can't invoke a method.
+
+These primitive data types are unable to move in the network, only objects are moving in the network.
+
+We can't perform serialization and object cloning on primitive data types.It is only possible with objects.
+
+To avoid the above said problems, From JDK 1.5v, java software people has provided the following two concepts :
+
+a) Autoboxing [Converting primitive to Wrapper Object]
+b) Unboxing [Converting Wrapper object back to primitive]
+
+Autoboxing 
+--------------
+When we convert the primitive data types into corresponding wrapper object then it is called Autoboxing as shown below.
+
+Primitive type		Wrapper Object
+----------------    ------------------
+byte					-	Byte
+short					-	Short
+int						-	Integer
+long					-	Long
+float					-	Float
+double					-	Double
+char					-	Chracter
+boolean					-	Boolean 
+
+From JDK 1.5V onwards we can directly assign primitive data type variable value into corresponsing Wrapper object.
+
+Here Internally compiler will convert the primitive into Wrapper Object by using valueOf() static method.
+
+Note : ALL THE WRAPPER CLASSES ARE IMMUTABLE(UN-CHANGED) AS WELL AS equals(Object obj) and hashCode() methods are overridden in all the Wrapper classes.
+
+WAP to show that Wrapper classes are immutable :
+-------------------------------------------------
+package com.ravi.autoboxing;
+
+class Product
+{
+	private double price = 18000;
+
+	public double getPrice() 
+	{
+		return price;
+	}
+
+	public void setPrice(double price)
+	{
+		this.price = price;
+	}	
+}
+public class ImmutableDemo1 
+{
+	public static void main(String[] args)
+	{
+		Product p1 = new Product();
+		System.out.println(p1.getPrice());
+		accept(p1);
+		System.out.println(p1.getPrice());
+	}
+	
+	public static void accept(Product prod)
+	{
+		prod.setPrice(22000);
+	}
+
+}
+
+
+Note : The above program is a demo example.
+--------------------------------------------------------------
+package com.ravi.autoboxing;
+
+public class ImmutableDemo2 
+{
+	public static void main(String[] args)
+	{
+		Integer i = new Integer(100);
+		System.out.println(i);
+        accept(i);
+        System.out.println(i);
+	}
+	
+	public static void accept(Integer x)
+	{
+		x = 120;
+	}
+
+}
+
+Note : Here we will get the output 100 and 100 because Integer is a Wrapper class and all the Wrapper classes are immutable class.
+--------------------------------------------------------------
+ALL THE WRAPPER CLASSES AND STRING CLASS ARE IMMUTABLE SO UN-MODIFIABLE.
+
+package com.ravi.autoboxing;
+
+public class ImmutableDemo3 
+{
+	public static void main(String[] args) 
+	{
+	     String s1 = new String("india");	
+	     System.out.println(s1);
+	     accept(s1);
+	     System.out.println(s1);
+	}
+	
+	public static void accept(String str)
+	{
+		str.toUpperCase();
+	}
+}
+Note : String is also immutable.
+--------------------------------------------------------------
+Overloaded valueOf() method :
+-----------------------------
+We have 3 overloaded valueOf() method :
+----------------------------------------
+1) public static Integer valueOf(int x) : It will convert the given int value into Integer Object.
+
+2) public static Integer valueOf(String str) : It will convert the given String into Integer Object.
+   [valueOf() method will convert the String into Wrapper object where as parseInt() method will convet the String into primitive type]
+
+3) public static Integer valueOf(String str, int radix/base) :
+   It will convert the given String number into Integer object by using the specified radix or base.
+
+ Note :- We can pass base OR radix upto 36 i.e A to Z (26) + 0 to 9 (10) -> [26 + 10 = 36], It can be calculated by using Character.MAX_RADIX.
+
+Output will be generated on the basis of radix
+
+System.out.println(Character.MAX_RADIX); //36
+MAX_RADIX is a final and static variable of Character class.
+---------------------------------------------------------------
+18-03-2025
+----------
+//Integer.valueOf(int);
+public class AutoBoxing1
+{
+	public static void main(String[] args) 
+	{
+		int a = 12;
+		Integer x = Integer.valueOf(a); //Upto 1.4 version
+		System.out.println(x);
+
+		
+        int y = 15;
+		Integer i = y;   //From 1.5 onwards compiler takes care
+		System.out.println(i);		
+	}
+}
+
+Note : Befor JDK 1.5V, It was the responsibility of developer to convert the primitive type into corresponding wrapper object.
+---------------------------------------------------------------
+public class AutoBoxing2
+{  
+	public static void main(String args[])
+	{  
+		byte b = 12;
+	    Byte b1 = Byte.valueOf(b);
+	   System.out.println("Byte Object :"+b1);
+	   
+	   short s = 17;
+	   Short s1 = Short.valueOf(s);
+	   System.out.println("Short Object :"+s1);
+	   
+	   int i = 90;
+	   Integer i1 = Integer.valueOf(i);
+	   System.out.println("Integer Object :"+i1);
+	   
+	  	long g = 12;
+		Long h =  Long.valueOf(g);
+		System.out.println("Long Object :"+h);
+		
+		float f1 = 2.4f;
+		Float f2 = Float.valueOf(f1);
+		System.out.println("Float Object :"+f2);
+		
+		double k = 90.90;
+		Double l = Double.valueOf(k);
+		System.out.println("Double Object :"+l);
+		
+		char ch = 'A';
+		Character ch1 = Character.valueOf(ch);
+		System.out.println("Character Object :"+ch1);
+		
+		boolean x = true;
+		Boolean x1 = Boolean.valueOf(x);
+		System.out.println("Boolean Object :"+x1);
+	   
+	   
+			}   
+}  
+
+Note : Every Wrapper object provided valueOf() method so we can convert any primitive type into corresponding wrapper object.       
+ -------------------------------------------------------------
+//Integer.valueOf(String str)
+//Integer.valueOf(String str, int radix/base)
+public class AutoBoxing3 
+{
+	public static void main(String[] args) 
+	{
+			Integer a = Integer.valueOf(15);
+			
+			Integer b = Integer.valueOf("25");
+
+            Integer c = Integer.valueOf("111",36); //Here Base we can take upto 36
+
+			System.out.println(a);
+			System.out.println(b);
+			System.out.println(c);
+			
+           
+	}
+}
+---------------------------------------------------------------
+Overloaded parseInt() Method :
+-------------------------------
+Just like valueOf() method, we have also overloaded parseInt() method.
+
+public static int parseInt(String str, int base/radix);
+
+public class Test 
+{
+	public static void main(String[] args) 
+	{
+		String str = "111";
+        int val = Integer.parseInt(str,2);
+		System.out.println(val);
+		
+	}
+}
+--------------------------------------------------------------
+public class AutoBoxing4 
+{
+	public static void main(String[] args) 
+	{
+		Integer i1 = new Integer(100);
+		Integer i2 = new Integer(100);
+		System.out.println(i1==i2);  //false
+
+		Integer a1 = Integer.valueOf(15);
+		Integer a2 = Integer.valueOf(15);
+		System.out.println(a1==a2); //true 
+	}
+}
+
+Note : It will generate Compilation warning because new Integer(int val) is marked for removal from java 9V.
+
+       a1 and a2 reference variable, both are pointing to the same object (immutable) so == operator will provide true.
+---------------------------------------------------------------
+Cache value while working with Integer Wrapper class :
+-------------------------------------------------------
+Every wrapper class has provided (Overridden) equals(Object obj) and hashCode() method.
+
+Every Wrapper class has also provided compareTo(T x) method for Object comparison.
+
+We should never compare any Wrapper class Object by using == operator, Actually we should always compare by using either equals(Object obj) method OR compareTo(T x) method.
+
+Integer object are storing the value in the cache memory where the range is -128 to 127 so if we compare Integer object by using == operator then upto 127 value, It refers to same memory location (due to cache memory) so will return true but if the values are beyond the range (-128 to 127) then it will return false.
+
+class BufferTest 
+{
+	public static void main(String[] args) 
+	{		
+		Integer i = 127;
+		Integer j = 127;
+		System.out.println("Using == operator :"+(i==j)); //true 
+		System.out.println("Using equals method "+i.equals(j));
+		
+		System.out.println("...................");
+		
+		Integer a = 128;
+		Integer b = 128;
+		System.out.println("Using == operator :"+(a==b));
+		System.out.println("Using equals method "+a.equals(b));
+	}
+}
+---------------------------------------------------------------
+How to convert Integer object into String :
+-------------------------------------------
+Integer class has provided a static method called toString() through which we can convert the Integer Object into String type
+
+public static String toString()
+
+//Converting integer value to String
+public class AutoBoxing5 
+{
+	public static void main(String[] args) 
+	{
+		int x = 12;
+		String str = Integer.toString(x);
+		System.out.println(str+2);
+	}
+}
+---------------------------------------------------------------
+Unboxing :
+----------------
+Converting wrapper object to corresponding primitive type is called Unboxing.
+
+Wrapper Object           Primitive type               
+--------------          ---------------
+Byte		      - 	 byte
+Short		      - 	 short
+Integer		      - 	 int
+Long		      - 	 long
+Float		      - 	 float
+Double		      - 	 double
+Chracter	      - 	 char
+Boolean		      - 	 boolean
+----------------------------------------------------------------
+We have total 8 Wrapper classes.
+
+Among all these 8, 6 Wrapper classes (Byte, Short, Integer, Long, Float and Double) are the sub class of java.lang.Number class which represent numbers (either decimal OR non decimal) so all the following six wrapper classes (Which are sub class of Number class) are providing the following common methods.
+
+1) public byte byteValue()
+
+2) public short shortValue()
+
+3) public int intValue()
+
+4) public long longValue()
+
+5) public float floatValue()
+
+6) public double doubleValue()
+
+--------------------------------------------------------------
+//Converting Wrapper object into primitive
+public class AutoUnboxing1
+{  
+   public static void main(String args[])
+	   {  
+            Integer obj = 15;   //Upto 1.4
+			int x = obj.intValue();
+			System.out.println(x);
+		}   
+}  
+
+Note : Upto JDK 1.4V it was the responsibility of the developer to convert the Wrapper Object into primitive type.
+---------------------------------------------------------------
+public class AutoUnboxing2
+{
+	public static void main(String[] args) 
+	{	
+			Integer x = 25; 
+			int y = x;        //JDK 1.5 onwards  
+			System.out.println(y);  
+	}
+}
+--------------------------------------------------------------
+public class AutoUnboxing3
+{
+	public static void main(String[] args) 
+	{	
+			Integer i = 15;
+			System.out.println(i.byteValue());  
+			System.out.println(i.shortValue());
+			System.out.println(i.intValue());
+			System.out.println(i.longValue());
+			System.out.println(i.floatValue());
+			System.out.println(i.doubleValue());			
+	}
+}
+---------------------------------------------------------------
+public class AutoUnboxing4
+{
+	public static void main(String[] args) 
+	{
+		Character c1 = 'A';
+		char ch = c1.charValue();
+		System.out.println(ch);
+	}
+}
+---------------------------------------------------------------
+public class AutoUnboxing5
+{
+	public static void main(String[] args) 
+	{
+		Boolean b1 = true;
+		boolean b = b1.booleanValue();
+		System.out.println(b);
+	}
+}
+---------------------------------------------------------------
+public class Test 
+{
+	public static void main(String[] args) 
+	{
+		long l = 12; //Automatic Type casting OR Widening
+		System.out.println(l);
+		
+		long x = 15;
+		int y = (int) x; //Manual OR Explicit OR Narrowing
+		System.out.println(y);	
+		
+	}
+}
+-------------------------------------------------------------
+public class Test 
+{
+	public static void main(String[] args) 
+	{
+		Long a = 12L;
+		System.out.println(a);
+		
+		Float b = 15F;
+		System.out.println(b);
+		
+		Double c = 1.0;
+		System.out.println(c);
+		
+		Double d = 1D;
+		System.out.println(d);
+	}
+}
+===============================================================
+Ambiguity issue while overloading a method :
+---------------------------------------------
+When we overload a method then compiler is selecting appropriate method among the available methods based on the following types.
+
+1. Different number of parameters 
+2. Different data type of parameters 
+3. Different sequence(order) of data type of parameters
+
+In case of ambiguity where compiler can select more than one method then compiler will provide the priority by using following rules :
+
+1) Most Specific Type :
+-----------------------
+Compiler alwyas provide more priority to most specific data type or class type.
+
+most_specific_type		less_specific_type
+------------------		------------------
+            double   >   float [Here float is the most specific type]  
+            float    >   long 
+            long     >   int
+            int      >   char     
+            int      >   short  //[No relation between short and char]
+            short    >   byte     
+
+2) WAV [Widening ->  Autoboxing  -> Var Args]
+
+   Compiler gives the priority to select appropriate method by using the following sequence :
+   Widening ---> Autoboxing  ----> Var args
+
+3) Nearest Data type or Nearest class (sub class) 
+   
+   While selecting the appropriate method in ambiguity issue compiler provides priority to nearest data type or nearest class i.e sub class
+--------------------------------------------------------------
+class Test
+{
+	public void accept(double d) 
+	{
+		System.out.println("double");
+	}
+	public void accept(float d)
+	{
+		System.out.println("float");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args) 
+	{
+		Test t = new Test();
+		t.accept(6);
+	}
+}
+
+Note : Here float will be executed becuase float is the most specific type.
+---------------------------------------------------------------
+class Test
+{
+	public void accept(int d)
+	{
+		System.out.println("int");
+	}
+	public void accept(char d)
+	{
+		System.out.println("char");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args) 
+	{
+		Test t = new Test();
+		t.accept(6);
+
+	}
+}
+Here 6 is int type so int will be executed.
+-------------------------------------------------------------
+class Test
+{
+	public void accept(int ...d)
+	{
+		System.out.println("int");
+	}
+	public void accept(char ...d)
+	{
+		System.out.println("char");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args) 
+	{
+		Test t = new Test();
+		t.accept();
+
+	}
+}
+char will be executed becoz char is more specific type.
+-------------------------------------------------------------
+class Test
+{
+	public void accept(short ...d)
+	{
+		System.out.println("short");
+	}
+	public void accept(char ...d)
+	{
+		System.out.println("char");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args) 
+	{
+		Test t = new Test();
+		t.accept();
+
+	}
+}
+Here we will get compilation error because there is no relation between char and short based on the specific type rule.
+-------------------------------------------------------------
+ class Test
+{
+	public void accept(short ...d)
+	{
+		System.out.println("short");
+	}
+	public void accept(byte ...d)
+	{
+		System.out.println("byte");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args) 
+	{
+		Test t = new Test();
+		t.accept();
+		
+	}
+}
+Here byte will be executed because byte is the specific type.
+-------------------------------------------------------------
+class Test
+{
+	public void accept(double ...d)
+	{
+		System.out.println("double");
+	}
+	public void accept(long ...d)
+	{
+		System.out.println("long");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args) 
+	{
+		Test t = new Test();
+		t.accept();
+
+	}
+}
+Here long will be executed because long is the most specific type.
+-------------------------------------------------------------
+class Test 
+{
+	public void accept(byte d)  
+	{
+		System.out.println("byte");
+	}
+	public void accept(short s)  
+	{
+		System.out.println("short");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args)
+	{
+		Test t = new Test();
+		t.accept(9); //error
+                 t.accept((byte)9);
+		 t.accept((short)9);
+	}
+}
+Here value 9 is of type int so, we can't assign directly to byte and short, If we want, explicit type casting is reqd.
+--------------------------------------------------------------
+class Test
+{
+	public void accept(int d)
+	{
+		System.out.println("int");
+	}
+	public void accept(long s)
+	{
+		System.out.println("long");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args) 
+	{
+		Test t = new Test();
+		t.accept(9);
+	}
+}
+Note : Here int will be executed because int is the nearest type
+-------------------------------------------------------------
+class Test
+{
+	public void accept(Object s)
+	{
+		System.out.println("Object");
+	}
+	public void accept(String s)
+	{
+		System.out.println("String");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args) 
+	{
+		Test t = new Test();
+		t.accept(9);
+	}
+}
+Here Object will be executed.
+-------------------------------------------------------------
+class Test
+{
+	public void accept(Object s)
+	{
+		System.out.println("Object");
+	}
+	public void accept(String s)
+	{
+		System.out.println("String");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args) 
+	{
+		Test t = new Test();
+		t.accept("NIT");
+	}
+}
+Here String will be executed
+-------------------------------------------------------------
+class Test
+{
+	public void accept(Object s)
+	{
+		System.out.println("Object");
+	}
+	public void accept(String s)
+	{
+		System.out.println("String");
+	}	
+	public void accept(Integer i)
+	{
+		System.out.println("Integer");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args) 
+	{
+		Test t = new Test();
+		t.accept(null);
+	}
+}
+
+Here We will get compilation error
+-------------------------------------------------------------
+class Test
+{
+	public void accept(Object s)
+	{
+		System.out.println("Object");
+	}
+	public void accept(Number s)
+	{
+		System.out.println("Number");
+	}	
+	public void accept(Integer i)
+	{
+		System.out.println("Integer");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args) 
+	{
+		Test t = new Test();
+		t.accept(null);
+	}
+}
+
+Here Integer will be executed.
+--------------------------------------------------------------
+class Alpha
+{
+}
+class Beta extends Alpha
+{
+}
+class Test
+{	
+	public void accept(Alpha a)
+	{
+		System.out.println("Alpha");
+	}	
+	public void accept(Beta b)
+	{
+		System.out.println("Beta");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args) 
+	{
+		Test t = new Test();
+		t.accept(null);
+	}
+}
+--------------------------------------------------------------
+class Test
+{	
+	public void accept(Number s)
+	{
+		System.out.println("Number");
+	}	
+	public void accept(Integer i)
+	{
+		System.out.println("Integer");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args) 
+	{
+		Test t = new Test();
+		t.accept(12);
+	}
+}
+
+Note :Integer will be executed.
+-------------------------------------------------------------
+class Test
+{	
+	public void accept(long s)
+	{
+		System.out.println("Widening");
+	}	
+	public void accept(Integer i)
+	{
+		System.out.println("Autoboxing");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args) 
+	{
+		Test t = new Test();
+		t.accept(12);
+	}
+}
+Here widening is having more priority
+-------------------------------------------------------------
+class Test 
+{	
+	public void accept(int ...s)
+	{
+		System.out.println("Var args");
+	}	
+	public void accept(Integer i)
+	{
+		System.out.println("Autoboxing");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args) 
+	{
+		Test t = new Test();
+		t.accept(12); 
+	}
+}
+Here Autoboxing will be executed.
+-------------------------------------------------------------
+class Test 
+{	
+	public void accept(Number n)
+	{
+		System.out.println("Number");
+	}	
+	public void accept(Double d)
+	{
+		System.out.println("Double");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args) 
+	{
+		Test t = new Test();
+		t.accept(12);
+		
+	}
+}
+
+Here Number will be executed.
+-------------------------------------------------------------
+class Test 
+{	
+	public void accept(long x, int y)
+	{
+		System.out.println("long-int");
+	}	
+	public void accept(int x, long y)
+	{
+		System.out.println("int-long");
+	}	
+}
+public class AmbiguityIssue {
+
+	public static void main(String[] args) 
+	{
+		Test t = new Test();
+		t.accept(10,10);
+	}
+}
+
+Note : Here we will get compilation error.
+=============================================================
+****Method Overriding :
+------------------------
+Writing two or more non static methods in super and sub class in such a way that method name along with method parameter (Method Signature) must be same as well as return type must be compaitable is called Method Overriding.
+
+Method Overriding is not possible without inheritance.
+
+Generally we can't change the return type of the method while overriding a method (compatibility issue) but from JDK 1.5v there is a concept called Co-variant (In same direction) through which we can change the return type of the method.
+
+Example :
+---------
+class Super
+{
+	public void m1()
+	{
+	}
+}
+class Sub extends Super
+{
+	public void m1() //Overridden Method
+	{
+		
+	}
+}
+
+Method overriding is mainly used to replacing the implementation of super class method by sub class method body.
+--------------------------------------------------------------
+Advantage of Method Overriding :
+---------------------------------
+The advantage of Method Overriding is, each sub class is specifying its own specific behavior.
+--------------------------------------------------------------
+20-03-2025
+-----------
+Upcasting :- 
+------------
+It is possible to assign sub class object to super class reference variable (up) using dynamic polymorphism. It is known as Upcasting.
+
+Example:-    Animal a = new Lion();  //valid [upcasting]
+
+
+Downcasting :
+-------------
+Downcasting is not possible without upcasting.
+
+It is not possible in java to assign super class object to sub class reference variable. [java.lang.ClassCastException]
+
+Downcasting is a process to assign sub class object to sub class reference variable by using Super class reference.
+
+Example :
+
+ Parent p = new Child(); //Upcasting
+ Child c = (Child)p;     //Downcasting
+ c.display();
+
+The following statement is not downcasting and if we execute it will generate java.lang.ClassCastException.
+
+Case 1:
+--------
+Parent p = new Child(); //Valid
+
+Case 2:
+-------
+Child c = new Parent(); // Invalid [Compilation error]
+
+Case 3:
+-------
+Child c1 = (Child) new Parent(); //no compilation error but at runtime we will get java.lang.ClassCastException
+                                    
+---------------------------------------------------------------------	
+//Program on method Overriding by using dynamic method displatch :
+------------------------------------------------------------------
+package com.ravi.overriding;
+
+class Payment
+{
+	public void makePayment()
+	{
+		System.out.println("Generic Payment");
+	}
+}
+class CreditCard extends Payment
+{
+	public void makePayment()
+	{
+		System.out.println("Making a payment through Credit Card");
+	}
+}
+class DebitCard extends Payment
+{
+	public void makePayment()
+	{
+		System.out.println("Making a payment through Debit Card");
+	}
+}
+class UPI extends Payment
+{
+	public void makePayment()
+	{
+		System.out.println("Making a payment through UPI");
+	}
+}
+
+public class MethodOverridingDemo1 
+{
+	public static void main(String[] args) 
+	{
+        Payment p = null;
+		
+		p = new CreditCard(); p.makePayment(); //Dynamic Method Dispatch
+		p = new DebitCard(); p.makePayment();
+		p = new UPI(); p.makePayment();
+
+	}
+
+}
+
+----------------------------------------------------------------------
+//Program that describes JVM will start executing the Method based on class type Object [Bottom to top, Puppy --> Dog --> Animal]
+
+package com.ravi.overriding;
+
+class Animal
+{
+	public void roam()
+	{
+		System.out.println("Generic Animal is roaming");
+	}
+}
+class Dog extends Animal
+{
+	public void roam()
+	{
+		System.out.println("Dog Animal is roaming");
+	}
+}
+class Puppy extends Dog
+{
+	public void roam()
+	{
+		System.out.println("Puppy Animal is roaming");
+	}
+}
+
+public class MethodOverridingDemo2 
+{
+	public static void main(String[] args)
+	{		
+		Animal a1 = new Puppy();
+		a1.roam();
+
+	}
+
+}
+---------------------------------------------------------------------
+//Program that describes down-casting
+
+package com.ravi.overriding;
+
+class Parent
+{
+	public void display()
+	{
+		System.out.println("Parent class display method");
+	}
+}
+class Child extends Parent
+{
+	public void display()
+	{
+		System.out.println("Child class display method");
+	}
+}
+
+public class MethodOverridingDemo3
+{
+	public static void main(String[] args)
+	{
+	 
+	  Parent p = new Child();
+	  Child c = (Child)p;
+	  c.display();
+	}
+
+}
+----------------------------------------------------------------------
+@Override annotation :
+----------------------
+Annotation concept is introduced in java from JDK 1.5V.
+
+Every Annotation must start with @ symbol.
+
+It describes metadata (data about data), Actually it describes that method is overridden method.
+
+It is optional but it is always better to write @Override annotation just before Overridden method.
+
+@Override annotation will provide the information that method is overridden method so we will get same class output but not super class.
+
+package com.ravi.overriding;
+
+class Shape
+{
+	public void draw()
+	{
+		System.out.println("Generic Drawing");
+	}
+}
+class Rectangle extends Shape
+{
+	@Override
+	public void draw()
+	{
+		System.out.println("Drawing Rectangle...");
+	}
+}
+class Circle extends Shape
+{
+	@Override
+	public void draw()
+	{
+		System.out.println("Drawing Circle...");
+	}
+}
+public class MethodOverridingDemo4 
+{
+	public static void main(String[] args) 
+	{
+		Shape s = new Rectangle();
+		s.draw();
+
+		s = new Circle();
+		s.draw();
+		
+		
+	}
+
+}
+----------------------------------------------------------------------
+21-03-2025
+----------
+Variable Hiding in upcasting :
+-------------------------------
+class Super
+{
+  int x = 100;
+}
+class Sub extends Super
+{
+  int x = 200;  //Variable Hiding
+}
+
+
+In java, there is no concept called Variable Overriding, We can only override non static methods.
+
+Depending upon the context the Object behavior will change but the properties of the Object will remain unchanged.
+
+Static variable, non static variable and static methods are always executing by using current reference.
+
+//Program on Variable Hiding
+
+package com.ravi.variable_hiding;
+
+class RBI
+{
+	protected String ifscCode = "RBIHYD00001";
+	
+	public String loan()
+	{
+		return "Bank should provide loan";
+	}
+}
+class SBI extends RBI
+{
+	protected String ifscCode = "SBIAMPT15314"; //Variable Hiding
+	
+	@Override
+	public String loan()
+	{
+		return "Provides the loan at 9.2% ROI";
+	}
+}
+
+public class VariableHiding 
+{
+	public static void main(String[] args)
+	{
+		RBI r = new SBI();
+		System.out.println(r.ifscCode+" : "+r.loan());
+	}
+}
+----------------------------------------------------------------------
+Can we override a private method of super class ?
+--------------------------------------------------
+No, We can't override private method of super class because private methods are not visible (not available) to the sub class hence we can't override.
+
+We can't use @Override annotation on private method of sub class because it is not overridden method, actually it is re-declared by sub class developer as shown in the program
+
+PrivateMethodOverriding.java
+------------------------------
+package com.ravi.overriding;
+
+class Super
+{
+	private void show()
+	{
+		System.out.println("Private method show of Super class");
+	}
+}
+class Sub extends Super
+{
+	public void show() //Re-declaration
+	{
+		System.out.println("Show method of sub class");
+	}
+}
+public class PrivateMethodOverriding 
+{
+	public static void main(String[] args) 
+	{
+		new Sub().show();
+	}
+
+}
+
+Note :- private method of super class is not available or not inherited in the sub class so if the sub class declare the method with same signature then it is not overridden method, actually it is re-declared in the sub class. 
+----------------------------------------------------------------
+Role of access modifier while overriding a method :
+---------------------------------------------------
+While overriding the method from super class, the access modifier of sub class method must be greater or equal in comparison to access modifier of super class method otherwise we will get compilation error.
+
+In terms of accessibility, public is greater than protected, protected is greater than default (public > protected > default)
+[default < protected < public]
+
+**So the conclusion is we can't reduce the visibility of the method while overriding a method.
+
+Note :- private method is not availble (visible) in sub class so it is not the part of method overriding.
+---------------------------------------------------------------------
+package com.ravi.overriding;
+
+class Vehicle
+{
+	 public void run()
+	{
+		System.out.println("Generic Vehicle is running");
+	}
+}
+class Car extends Vehicle
+{
+	@Override
+	protected void run() //error [Can't reduce the visibility]
+	{
+		System.out.println("Car Vehicle is running");
+	}
+}
+public class Test 
+{	
+	public static void main(String[] args) 
+	{
+		Vehicle v = new Car();	
+		v.run();
+	}
+}
+----------------------------------------------------------------------
+Co-variant in java :
+--------------------
+As we know while method overriding, the method signature must be same as well as return type must be compaitable,
+If return type is not compaitable we will get compilation error as shown in the program.
+
+class Super
+{
+	public void show()
+	{
+		System.out.println("Super class show method!!!!");
+	}	
+}
+class Sub extends Super
+{
+	@Override
+	public int show()
+	{
+		System.out.println("Sub class show method!!!!");
+		return 0;
+	}	
+}
+public class CoVariant 
+{
+	public static void main(String[] args) 
+	{
+		Super s1 = new Sub();
+		s1.show();
+	}
+}
+
+Note : We will get compilation error because return type int is not compaitable with void.
+----------------------------------------------------------------------
+22-03-2025
+-----------
+While overriding a method, return type must be compaitable. Java software people has provided a concept called Co-Variant through which by using Inheritance relation we have make return type as compaitable.
+
+[In a single statement Co-Variant is, If we are able to assign sub class method return type Object to super class method return type Object then it is called Co-Variant]
+
+package com.ravi.co_variant;
+
+class Animal
+{	
+}
+class Dog extends Animal
+{
+	
+}
+
+class Base
+{
+	public Animal display()
+	{
+		System.out.println("Base class display method");
+		return new Dog();
+	}
+}
+class Derived extends Base
+{
+	public Dog display()
+	{
+		System.out.println("Derived class display method");
+		return new Dog();
+	}
+}
+public class CoVariantDemo1 
+{
+	public static void main(String[] args) 
+	{
+		Base b = new Derived();
+		b.display();
+	}
+
+}
+----------------------------------------------------------------------
+package com.ravi.co_variant;
+
+class Super
+{
+	public Super m1()
+	{
+		System.out.println("Super class m1");
+		return this;
+	}
+}
+class Sub extends Super
+{
+	public Sub m1()
+	{
+		System.out.println("Sub class m1");
+		return this;
+	}
+}
+
+public class CoVariantDemo2 {
+
+	public static void main(String[] args) 
+	{
+		Super s1 = new Sub();
+		s1.m1();
+
+	}
+
+}
+----------------------------------------------------------------------
+package com.ravi.co_variant;
+
+class Parent
+{
+	public Object m1()
+	{
+		System.out.println("Parent class m1 method");
+		return null;
+	}
+}
+class  Child extends Parent
+{
+	public System m1()
+	{
+		System.out.println("Child class m1 method");
+		return null;
+	}
+}
+public class CoVariantDemo3 
+{
+	public static void main(String[] args) 
+	{
+		Parent p1 = new Child();
+		p1.m1();
+	}
+
+}
+======================================================================
+***What is Method Hiding in java ?
+             OR
+Can we override a static method?
+             OR
+Can we Override main method?
+ 
+In order to work with Method Hiding we have different Cases :
+
+Case 1 :
+---------
+Any public static method of super class is by default available to sub class so from sub class we can call super class static method as shown in the program below :
+
+class Super
+{
+	public static void m1()
+	{
+		System.out.println("m1 static method of super class");
+	}
+}
+class Sub extends Super
+{
+	
+}
+public class MethodHidingDemo1 
+{
+	public static void main(String[] args) 
+	{
+		Sub.m1();
+		Sub s1 = new Sub();
+		s1.m1();
+	}
+}
+
+NOte : From above program it is clear that public static method of super class is by default available to sub class so from sub class we can call super class static method.
+----------------------------------------------------------------------
+Program that describes when method oevrriding becomes method hiding :
+
+As we know we can achieve method overriding with non static method where as Method hiding is only possible with static method.
+
+class Super
+{
+	public static void m1()
+	{
+		System.out.println("m1  static method of super class");
+	}
+}
+class Sub extends Super
+{
+	
+	public static int m1()  
+	{
+		System.out.println("m1 static method of Sub class");
+		return 0;
+	}
+}
+public class MethodHidingDemo2
+{
+	public static void main(String[] args) 
+	{
+		
+	}
+}
+
+Case 2 :
+---------
+We can't override static method with non static method because static method belongs to class where as non static method belongs to Object.
+If we try to override then we will get an error "Overridden method is static"
+
+class Super
+{
+	public static void m1()
+	{
+		System.out.println("m1  static method of super class");
+	}
+}
+class Sub extends Super
+{	
+	public void m1()  
+	{
+		System.out.println("m1 static method of Sub class");
+	}
+}
+public class MethodHidingDemo1 
+{
+	public static void main(String[] args) 
+	{
+		
+	}
+}
+
+Case 3 :
+--------
+We cannot override non static method with static method, If we try to override then we will get an error "Overriding method is static".
+
+class Super
+{
+	public  void m1()
+	{
+		System.out.println("m1  static method of super class");
+	}
+}
+class Sub extends Super
+{	
+	public static void m1()  
+	{
+		System.out.println("m1 static method of Sub class");
+	}
+}
+public class MethodHidingDemo3
+{
+	public static void main(String[] args) 
+	{
+		
+	}
+}
+
+Case 4 :
+---------
+We can't override static method because It belong to class but not object, If we write static method in the sub class with same signature and compaitable return type then It is Method Hiding but not Method Overriding here compiler will search the method of super class and JVM will also execute the method of super class because method is not overridden.[Single copy and belongs to class area, sharable by all the objects]
+
+Note :- 1) We can't apply @Override annotation on static methods.
+
+        2) Static methods can't be overridden so behavior is same for all the Objects hence it is Static Polymorphism.
+
+package com.ravi.method_hiding;
+
+class Bird
+{
+	public static String name = "Bird";
+	
+	public static void fly()
+	{
+		System.out.println("Generic Bird is flying");
+	}
+}
+class Parrot extends Bird
+{
+	public static String name = "Parrot";
+	public static void fly() //Method Hiding
+	{
+		System.out.println("Parrot Bird is flying");
+	}
+}
+
+class Peacock extends Bird
+{
+	public static String name = "Peacock";
+	
+	public static void fly()
+	{
+		System.out.println("Peacock Bird is flying");
+	}
+}
+public class MethodHidingDemo4 {
+
+	public static void main(String[] args)
+	{
+         Bird b = new Peacock();
+         System.out.println(b.name);
+         b.fly();
+	}
+
+}
+
+
+NOTE : SV, NSV and SM always executes from current reference.
+======================================================================
+24-03-2025
+----------
+Polymorphic behavior of Method while using Method Overriding :
+---------------------------------------------------------------
+package com.ravi.polymorphic_behavior;
+
+class Animal
+{
+    public void eat()
+    {
+    	System.out.println("Genric Animal is eating...");
+    }
+}
+class Dog extends Animal
+{
+	@Override
+	public void eat()
+    {
+    	System.out.println("Dog Animal is eating...");
+    }
+}
+
+class Lion extends Animal
+{
+	@Override
+	public void eat()
+    {
+    	System.out.println("Lion Animal is eating...");
+    }
+}
+public class PolymorphicBehavior
+{
+	public static void main(String[] args) 
+	{
+		Animal animal = null;
+		
+		animal = new Dog();		
+		animalEating(animal);
+		
+		animal = new Lion();		
+		animalEating(animal);
+	}
+	
+	public static void animalEating(Animal a1)
+	{
+		a1.eat();
+	}
+
+}
+----------------------------------------------------------------------
+How to call a specfic method of sub class :
+-------------------------------------------
+In order to call specific method of sub class we need current class reference so down casting is required.
+
+In order to deal with mulltiple obejcts we need to take the support of instanceof operator.
+
+instanceof Operator :
+---------------------
+It is a relational operator as well as keyword.
+
+It return true/false.
+
+It is mainly used to verify whether a reference variable is pointing to a particular type of Object or not ?
+Example :
+        Dog d1 = new Dog();
+	    if(d1 instanceof Dog)
+	    {
+	       //d1 is pointing Dog type of Object.
+	    }
+
+We must have IS-A relation between reference variable and class type otherwise we will get compilation error.
+
+It is mainly used to avoid java.lang.ClassCastException.
+
+---------------------------------------------------------------------
+//Programs 
+
+package com.ravi.instance_of_optr;
+
+class Alpha
+{
+	
+}
+class Beta extends Alpha
+{
+	
+}
+class Gamma extends Beta
+{
+	
+}
+
+public class InstanceOfDemo1 
+{
+	public static void main(String[] args) 
+	{
+		Gamma g = new Gamma();
+		
+		if(g instanceof Gamma)
+		{
+			System.out.println("g is pointing to Gamma Object");
+		}
+		if(g instanceof Beta)
+		{
+			System.out.println("g is pointing to Beta Object");
+		}
+		if(g instanceof Alpha)
+		{
+			System.out.println("g is pointing to Alpha Object");
+		}
+		if(g instanceof Object)
+		{
+			System.out.println("g is pointing to Object Object");
+		}
+	}
+
+}
+----------------------------------------------------------------------
+package com.ravi.instance_of_optr;
+
+class Bird
+{
+	public void fly()
+	{
+		System.out.println("Can fly");
+	}
+}
+class Fish 
+{
+	public void swim()
+	{
+		System.out.println("Can swim");
+	}
+}
+
+
+public class InstanceofDemo2
+{
+
+	public static void main(String[] args) 
+	{
+		Fish f = new Fish();
+
+		if(f instanceof Bird)  //Compilation error
+		{
+			
+		}
+
+	}
+
+}
+
+
+Here we will get compilation error becoz there is no relation between Bird and Fish
+-----------------------------------------------------------
+package com.ravi.instance_of_optr;
+
+public class InstanceofDemo3 {
+
+	public static void main(String[] args) 
+	{
+		String str = "Hyderabad";
+		
+		if(str instanceof String)
+		{
+			System.out.println("str is pointing to String Object");
+		}
+		
+		Integer i = 454;
+		
+		if(i instanceof Number)
+		{
+			System.out.println("i is pointing to Number Object");
+		}
+		
+		Character c = 'A';
+		
+		if(c instanceof Object)
+		{
+			System.out.println("c is pointing to Object type");
+		}		
+	}
+}
+---------------------------------------------------------------------
+package com.ravi.instance_of_optr;
+
+class Vehicle
+{
+	public void run()
+	{
+		System.out.println("Vehicle is running");
+	}
+}
+
+class BMW extends Vehicle
+{
+	
+}
+
+class Audi extends Vehicle
+{
+	
+}
+
+
+
+public class InstanceofDemo4 
+{
+
+	public static void main(String[] args) 
+	{
+		
+		BMW b = new BMW();
+		acceptCarType(b);
+		
+		//Audi a = new Audi();
+		//acceptCarType(a);	
+	}
+	
+	public static void acceptCarType(Vehicle v)
+	{
+		
+		if(v instanceof BMW)
+		{
+			System.out.println("BMW Car");
+		}
+		else
+		{
+			System.out.println("AUDI Car");
+		}	
+		
+	}
+
+}
+
+//Program on Dynamic Polymorphism using down casting with instanceof operator to call a specific method.
+
+package com.ravi.polymorphic_behavior;
+
+class Animal
+{
+    public void eat() 
+    {
+    	System.out.println("Genric Animal is eating...");
+    }
+}
+class Dog extends Animal
+{
+	@Override
+	public void eat()
+    {
+    	System.out.println("Dog Animal is eating...");
+    }
+	
+	public void bark()
+	{
+		System.out.println("Dog is barking...");
+	}
+	
+}
+
+class Lion extends Animal
+{
+	@Override
+	public void eat()
+    {
+    	System.out.println("Lion Animal is eating...");
+    }
+	
+	public void roar()
+	{
+		System.out.println("Lion is roaring...");
+	}
+}
+public class PolymorphicBehavior
+{
+	public static void main(String[] args) 
+	{
+		Animal animal = null;
+		
+		animal = new Dog();		
+		animalEating(animal);	
+		
+		animal = new Lion();
+		animalEating(animal);		
+	}
+	
+	public static void animalEating(Animal a1) //loose coupling
+	{		
+		if(a1 instanceof Dog)
+		{
+			Dog dog = (Dog) a1;
+			dog.eat();
+			dog.bark();
+		}
+		else if(a1 instanceof Lion)
+		{
+			Lion lion = (Lion)a1;
+			lion.eat();
+			lion.roar();
+		}	
+		
+	}
+}
+======================================================================
+ final keyword in java :
+-----------------------
+It is used to provide some kind of restriction in our program.
+We can use final keyword in ways 3 ways in java.
+
+1) To declare a class as a final. (Inheritance is not possible)
+2) To declare a method as a final (Overriding is not possible)
+3) To declare a variable (Field) as a final (Re-assignment is not possible)    
+
+
+1) To declare a class as a final :
+-----------------------------------
+Whenever we declare a class as a final class then we cann't extend or inherit that class otherwise we will get a compilation error.
+
+We should declare a class as a final if the composition of the class (logic of the class) is very important and we don't want to share the feature of the class to some other developer to modify the original behavior of the existing class, In that situation we should declare a class as a final.
+
+Declaring a class as a final does not mean that the variables and methods declared inside the class will also become as a final, only the class behavior is final that means we can modify the variables value as well as we can create the object for the final classes.
+
+Note :- In java String and All wrapper classes are declared as final class.
+
+final class A
+{
+	private int x = 100;
+
+	public void setData()
+	{
+		x = 120;
+		System.out.println(x);
+	}
+}
+class B extends A 
+{   
+}
+public class FinalClassEx
+{
+	public static void main(String[] args)
+	{
+		B b1 = new B();
+		b1.setData();		
+	}
+}
+
+Note : class A is final so we can't inherit hence we will get compilation error.
+---------------------------------------------------------------------
+final class Test
+{
+	private int data = 100;
+
+	public Test(int data)
+	{
+		this.data = data;
+		System.out.println("Data value is :"+data);
+	}
+}
+public class FinalClassEx1 
+{
+	public static void main(String[] args) 
+	{
+		Test t1 = new Test(200);		
+	}
+}
+Note : for final class we can create object as well as we can modify the data.
+--------------------------------------------------------------------
+Whenever we declare a constructor as private then we should declare the class with final modifier. If constructor is private then we can't create a sub class because super class constructor is not visible from sub class constructor.
+
+final class Sample
+{
+	private Sample()
+	{
+	  System.out.println("Private Constructor");	
+	}
+}
+
+public class FinalClassEx2 
+{
+	public static void main(String[] args) 
+	{
+		
+	}
+}
+---------------------------------------------------------------------
+25-03-2025
+-----------
+Sealed class in Java :
+-----------------------
+It is a new feature introduced from java 15v (preview version) and become the integral part of java from 17v.
+
+It is an improvement over final keyword.
+
+By using sealed keyword we can declare classes and interfaces as sealed.
+
+It is one kind of restriction that describes which classes and interfaces can extend or implement from Sealed class Or interface.
+
+It is similar to final keyword with less restriction because here we can permit the classes to extend from the original Sealed class.
+
+The class which is inheriting from the sealed class must be final, sealed or non-sealed.
+
+The sealed class must have atleast one sub class.
+
+We can also create object for Sealed class.
+
+It provides the following modifiers :
+
+1) sealed : Can be extended only through permitted class.
+
+2) non-sealed : Can be extended by any sub class, if a user wants to give permission to its sub classes.
+
+3) permits : We can provide permission to the sub classes, which are inheriting through Sealed class OR sealed interface
+
+4) final : we can declare permitted sub class as final so, it cannot be extended further.
+
+package com.ravi.sealed_demo;
+
+sealed class Bird permits Parrot, Sparrow
+{
+	public void roam()
+	{
+		System.out.println("Bird is roaming");
+	}
+}
+non-sealed class Parrot extends Bird
+{
+	@Override
+	public void roam()
+	{
+		System.out.println("Parrot is roaming");
+	}
+}
+final class Sparrow extends Bird
+{
+	@Override
+	public void roam()
+	{
+		System.out.println("Sparrow is roaming");
+	}
+}
+
+public class SealedDemo1 {
+
+	public static void main(String[] args)
+	{
+		Bird b = null;
+		
+		b = new Parrot();  b.roam();
+		b = new Sparrow();  b.roam();
+	}
+
+}
+------------------------------------------------------------------------
+package com.ravi.sealed_demo;
+
+sealed class Flipkart permits Cash, CreditCard, DebitCard, UPI
+{
+	public void payment()
+	{
+		System.out.println("Make a payment for online purchase");
+	}
+}
+final class Cash extends Flipkart
+{
+	public void payment()
+	{
+		System.out.println("Making a payment through cash for online purchase");
+	}
+}
+non-sealed class CreditCard extends Flipkart
+{
+	public void payment()
+	{
+		System.out.println("Making a payment through CreditCard for online purchase");
+	}
+}
+non-sealed class DebitCard extends Flipkart
+{
+	public void payment()
+	{
+		System.out.println("Making a payment through DebitCard for online purchase");
+	}
+}
+final class UPI extends Flipkart
+{
+	public void payment()
+	{
+		System.out.println("Making a payment through UPI for online purchase");
+	}
+}
+public class SealedDemo2 
+{
+	public static void main(String[] args) 
+	{
+		Flipkart f = null;
+		
+		f = new Cash();   f.payment();
+
+	}
+
+}
+-----------------------------------------------------------------------
+2) To declare a method as a final (Overriding is not possible)
+---------------------------------------------------------------
+Whenever we declare a method as a final then we can't override that method in the sub class otherwise there will be a compilation error.
+
+We should declare a method as a final if the body of the method i.e the implementation of the method is very important and we don't want to override or change the super class method body by sub class method body then we should declare the super class method as final method.
+   
+ class A
+{
+	protected int a = 10;
+	protected int b = 20;
+
+     public final void calculate()
+	 {
+		int sum = a+b;
+		System.out.println("Sum is :"+sum);
+	 } 
+}
+class B extends A
+{	
+	@Override
+	public void calculate() 
+	{
+		int mul = a*b;
+		System.out.println("Mul is :"+mul);	
+	}
+}
+public class FinalMethodEx 
+{
+	public static void main(String [] args) 
+	{
+		 A a1 = new B();
+		 a1.calculate();
+	}
+}
+---------------------------------------------------------------------
+class Alpha   
+{
+	private final void accept()
+	{
+		System.out.println("Alpha class accept method");
+	}
+}
+class Beta extends Alpha
+{
+	public void accept()
+	{
+		System.out.println("Beta class accept method");
+	}
+}
+public class FinalMethodEx1 
+{
+	public static void main(String [] args) 
+	{
+		new Beta().accept();
+	}
+}
+Note : Here Program will compile and execute because private method of super class is not available to sub class.
+-------------------------------------------------------------
+3) To declare a variable/Field as a final :
+--------------------------------------------
+In older langugaes like C and C++ we use "const" keyword to declare a constant variable but in java, const is a reserved word for future use so instead of const we should use "final" keyword.
+
+If we declare a variable as a final then we can't perform re-assignment (i.e nothing but re-initialization) of that variable.
+
+In java It is always a better practise to declare a final variable by uppercase letter according to the naming convention.
+
+
+class A
+{
+	final int A = 10;  //re-assignment is not possible
+	
+	public void setData()
+	{
+		A = 10; //error
+		System.out.println(A);
+	}
+	
+}
+class FinalVarEx 
+{
+	public static void main(String[] args) 
+	{
+		 final A a1 = new A();
+		 a1 = new A(); //error
+		 a1.setData();
+		
+	}
+}
+----------------------------------------------------------------------
+Abstraction [Hiding the complexcity]
+------------------------------------
+If we display only the essential details without showing the background details (complexity) then it is called Abstraction.
+
+Example : Electric switch board(Internal Details), ATM , LIFT
+ 
+In java, We can achieve abstraction by using the following two concepts :
+
+ 1) Abstract class and abstract method [Partial Abstraction, 0 to 100%]
+ 2) Interface (Full Abstraction, 100%)
+	  
+
+Abstract class and abstract Method :
+------------------------------------
+
+
+
+
+
+
+
+
+

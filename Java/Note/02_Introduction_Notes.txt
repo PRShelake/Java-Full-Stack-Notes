@@ -1,0 +1,65 @@
+=================================================================
+28-01-2025
+----------
+Naming Convention in java :
+----------------------------
+Naming convention provides two important characteristics :
+
+ a) Standard Code (Industry accepted code)
+ b) Readability of the code will enhance.  
+
+1) How to write a class in java :
+----------------------------------
+While writing a class in java, we should follow pascal naming convention, According to this each word first character must be capital and it should not contain any space. In java a class represents noun.
+
+Example :
+ThisIsExampleOfClass     
+
+System
+String 
+Integer
+CommandAddition
+ArrayIndexOutOfBoundsException
+DataInputStream.
+
+2) How to write a method in java :
+----------------------------------
+While writing a method in java we should follow camel case naming convention, According to this naming convention first word will be in small and 2nd word onwards, each word first character must be capital. In java a method represents verb.
+
+Example :
+thisIsExampleOfMethod()
+read()
+readLine()
+parseInt()
+charAt()
+toUpperCase()       
+
+3) How to write a field/variable in java :
+-------------------------------------------
+While writing a variable we should follow camel case naming convention but unlike method variable does not have () symbol.
+
+Example :
+----------
+rollNumber    
+customerName
+customerBill
+studentName
+playerName
+
+4) How to write a final and static variable :
+---------------------------------------------
+While writing the final and static variable we should follow snake_case naming convention.
+
+Example :
+Integer.MIN_VALUE  [MIN_VALUE is final and static variable]
+Integer.MAX_VALUE  [MAX_VALUE is final and static variable]    
+
+
+5) How to write a package :
+---------------------------
+A package must be written in lower case only. Generally it is reverse of company name.
+
+com.nit.basic
+com.tcs.introduction
+com.wipro.shopping     
+-------------------------------------------------------------------
